@@ -44,6 +44,7 @@ public class GlobalExceptionHandler {
         BindingResult bindingResult = exception.getBindingResult();
         FieldError fieldError = bindingResult.getFieldError();
         String defaultMessage = fieldError.getDefaultMessage();
+        logger.info(defaultMessage);
         return new ExceptionResponseDto(StringConstant.VALIDATION_FAILED, defaultMessage);
     }
 
@@ -74,5 +75,4 @@ public class GlobalExceptionHandler {
         String defaultMessage = exception.getMessage();
         return new ExceptionResponseDto(StringConstant.INTERNAL_SERVER_ERROR, defaultMessage);
     }
-
 }

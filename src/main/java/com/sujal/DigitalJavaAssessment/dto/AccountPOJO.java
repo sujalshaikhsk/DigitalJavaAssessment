@@ -1,23 +1,21 @@
 package com.sujal.DigitalJavaAssessment.dto;
 
-
-import com.sujal.DigitalJavaAssessment.model.Customer;
+import com.sujal.DigitalJavaAssessment.model.Account;
 
 import java.io.Serializable;
-import java.util.List;
 
-public class CustomerPOJO implements Serializable {
+public class AccountPOJO implements Serializable {
 
-    private List<Customer> customerList;
+    private Account account;
     private Integer statusCode;
     private String message;
 
-    public List<Customer> getCustomerList() {
-        return customerList;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setCustomerList(List<Customer> customerList) {
-        this.customerList = customerList;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public Integer getStatusCode() {
@@ -35,5 +33,4 @@ public class CustomerPOJO implements Serializable {
     public void setMessage(String message) {
         this.message = message;
     }
-
 }
