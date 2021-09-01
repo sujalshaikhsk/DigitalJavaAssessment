@@ -21,46 +21,58 @@ public class Customer implements Serializable {
     @Id
     @Column(name = "customer_id")
     @NotEmpty(message = "customerId is mandatory")
-    private String customerId;
+    private String customerid;
+
+    @Column(name = "title")
+    @NotBlank(message = "title is mandatory")
+    private String title;
 
     @Column(name = "first_name")
-    @NotBlank(message = "firstName is mandatory")
-    private String firstName;
+    @NotBlank(message = "firstname is mandatory")
+    private String firstname;
 
     @Column(name = "last_name")
-    @NotBlank(message = "lastName is mandatory")
-    private String lastName;
+    @NotBlank(message = "lastname is mandatory")
+    private String lastname;
 
     @Column(name = "gender")
     @NotBlank(message = "gender is mandatory")
     private String gender;
 
     @JsonIgnore
-    @OneToMany(mappedBy="customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy="customer", cascade = CascadeType.ALL)
     private Set<Account> accounts;
 
-    public String getCustomerId() {
-        return customerId;
+    public String getCustomerid() {
+        return customerid;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setCustomerid(String customerid) {
+        this.customerid = customerid;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getGender() {
@@ -77,5 +89,17 @@ public class Customer implements Serializable {
 
     public void setAccounts(Set<Account> accounts) {
         this.accounts = accounts;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerid='" + customerid + '\'' +
+                ", title='" + title + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", gender='" + gender + '\'' +
+                ", accounts=" + accounts +
+                '}';
     }
 }

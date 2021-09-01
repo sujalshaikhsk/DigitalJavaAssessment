@@ -1,5 +1,7 @@
 package com.sujal.DigitalJavaAssessment.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,32 +18,57 @@ import javax.validation.constraints.NotEmpty;
 public class Account {
 
     @Id
-    @NotEmpty(message = "accountNumber is mandatory ")
-    @Column(name = "account_number")
-    private Long accountNumber;
+    @NotEmpty(message = "accountno is mandatory ")
+    @Column(name = "account_no")
+    private String accountno;
 
-    @NotBlank(message = "accountNumber is mandatory ")
-    @Column(name = "account_type")
-    private String accountType;
+    @NotBlank(message = "bsb is mandatory ")
+    @Column(name = "bsb")
+    private String bsb;
 
+    @NotBlank(message = "name is mandatory ")
+    @Column(name = "name")
+    private String name;
+
+    @NotBlank(message = "balance is mandatory ")
+    @Column(name = "balance")
+    private Double balance;
+
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="customer_id", nullable=false)
     private Customer customer;
 
-    public Long getAccountNumber() {
-        return accountNumber;
+    public String getAccountno() {
+        return accountno;
     }
 
-    public void setAccountNumber(Long accountNumber) {
-        this.accountNumber = accountNumber;
+    public void setAccountno(String accountno) {
+        this.accountno = accountno;
     }
 
-    public String getAccountType() {
-        return accountType;
+    public String getBsb() {
+        return bsb;
     }
 
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
+    public void setBsb(String bsb) {
+        this.bsb = bsb;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
     }
 
     public Customer getCustomer() {
@@ -50,5 +77,15 @@ public class Account {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountno='" + accountno + '\'' +
+                ", bsb='" + bsb + '\'' +
+                ", name='" + name + '\'' +
+                ", balance=" + balance +
+                '}';
     }
 }

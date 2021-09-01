@@ -1,5 +1,6 @@
 package com.sujal.DigitalJavaAssessment.resource;
 
+import com.sujal.DigitalJavaAssessment.dto.CustomerAccountPOJO;
 import com.sujal.DigitalJavaAssessment.dto.CustomerPOJO;
 import com.sujal.DigitalJavaAssessment.model.Customer;
 import com.sujal.DigitalJavaAssessment.service.CustomerService;
@@ -12,10 +13,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/")
 public class CustomerController {
 
     Logger logger = LoggerFactory.getLogger(CustomerController.class);
@@ -26,7 +29,7 @@ public class CustomerController {
     /**
      * @return CustomerPOJO
      */
-    @GetMapping
+    @GetMapping("customers")
     public ResponseEntity<CustomerPOJO> getCustomers() {
         Optional<CustomerPOJO> customerDTOOptional = customerService.getCustomers();
 
@@ -44,7 +47,7 @@ public class CustomerController {
      * @param customer
      * @return CustomerPOJO
      */
-    @PostMapping
+    @PostMapping("customers")
     public ResponseEntity<CustomerPOJO> save(@Valid @RequestBody Customer customer) {
         Optional<CustomerPOJO> customerDTOOptional = customerService.save(customer);
         if (customerDTOOptional.isPresent()) {
@@ -54,5 +57,21 @@ public class CustomerController {
             return new ResponseEntity<>(customerPOJO, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+
+    /**
+     * @param customerid
+     * @return CustomerAccountPOJO
+     */
+    @GetMapping("getAccountDetails/{customerid}")
+    public ResponseEntity<CustomerAccountPOJO> getAccountDetails(@PathVariable("customerid") @NotBlank @Size(max = 10) String customerid) {
+        Optional<CustomerAccountPOJO> customerAccountPOJOOptional = customerService.getAccountDetails(customerid);
+        if (customerAccountPOJOOptional.isPresent()) {
+            CustomerAccountPOJO customerAccountPOJO = customerAccountPOJOOptional.get();
+            logger.info("Total Accounts:  " + customerAccountPOJO.getCustomerid());
+            return new ResponseEntity<>(customerAccountPOJO, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
