@@ -3,7 +3,7 @@ package com.sujal.DigitalJavaAssessment.resource;
 import com.sujal.DigitalJavaAssessment.dto.AccountPOJO;
 import com.sujal.DigitalJavaAssessment.model.Account;
 import com.sujal.DigitalJavaAssessment.service.AccountService;
-import com.sujal.DigitalJavaAssessment.util.ApiConstant;
+import com.sujal.DigitalJavaAssessment.util.StringConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class AccountController {
             AccountPOJO accountPOJO = accountPOJOOptional.get();
             logger.info("Customer number " + accountPOJO.getAccount().getCustomer().getCustomerid());
             accountPOJO.setStatusCode(200);
-            accountPOJO.setMessage(ApiConstant.SUCCESS);
+            accountPOJO.setMessage(StringConstant.SUCCESS);
             return new ResponseEntity<>(accountPOJO, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -49,7 +49,7 @@ public class AccountController {
             AccountPOJO accountPOJO = accountPOJOOptional.get();
             logger.info("Customer number " + accountPOJO.getAccount().getCustomer().getCustomerid());
             accountPOJO.setStatusCode(200);
-            accountPOJO.setMessage(ApiConstant.SUCCESS);
+            accountPOJO.setMessage(StringConstant.SUCCESS);
             return new ResponseEntity<>(accountPOJO, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

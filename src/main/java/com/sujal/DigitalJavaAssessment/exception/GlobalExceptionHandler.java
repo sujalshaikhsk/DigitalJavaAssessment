@@ -21,7 +21,7 @@ public class GlobalExceptionHandler {
      * @description Handle NullPointer Exception
      *
      * @param exception
-     * @return
+     * @return ExceptionResponseDto
      */
     @ExceptionHandler(NullPointerException.class)
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
@@ -32,10 +32,25 @@ public class GlobalExceptionHandler {
     }
 
     /**
+     * @description Handle JwtSecurityException
+     *
+     * @param exception
+     * @return ExceptionResponseDto
+     */
+    @ExceptionHandler(JwtSecurityException.class)
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public final ExceptionResponseDto handleJwtSecurityExceptions(JwtSecurityException exception) {
+        String defaultMessage = exception.getMessage();
+        logger.info("error "+defaultMessage);
+        return new ExceptionResponseDto(StringConstant.INTERNAL_SERVER_ERROR, defaultMessage);
+    }
+
+    /**
      * @description Handle MethodArgumentNotValidException
      *
      * @param exception
-     * @return
+     * @return ExceptionResponseDto
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
@@ -52,7 +67,7 @@ public class GlobalExceptionHandler {
      * @description Handle Runtime Exception
      *
      * @param exception
-     * @return
+     * @return ExceptionResponseDto
      */
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
@@ -63,10 +78,10 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * @description All Handle Exception
+     * @description Handle All Exception
      *
      * @param exception
-     * @return
+     * @return ExceptionResponseDto
      */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)

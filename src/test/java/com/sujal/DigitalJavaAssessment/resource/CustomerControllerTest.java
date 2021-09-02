@@ -7,7 +7,7 @@ import com.sujal.DigitalJavaAssessment.dto.CustomerPOJO;
 import com.sujal.DigitalJavaAssessment.model.Account;
 import com.sujal.DigitalJavaAssessment.model.Customer;
 import com.sujal.DigitalJavaAssessment.service.CustomerService;
-import com.sujal.DigitalJavaAssessment.util.ApiConstant;
+import com.sujal.DigitalJavaAssessment.util.StringConstant;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +19,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -76,7 +75,7 @@ public class CustomerControllerTest {
         customerPOJO = new CustomerPOJO();
         customerPOJO.setCustomerList(Arrays.asList(customer));
         customerPOJO.setStatusCode(200);
-        customerPOJO.setMessage(ApiConstant.SUCCESS);
+        customerPOJO.setMessage(StringConstant.SUCCESS);
     }
 
     @Test

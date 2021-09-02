@@ -8,7 +8,7 @@ import com.sujal.DigitalJavaAssessment.dto.CustomerPOJO;
 import com.sujal.DigitalJavaAssessment.model.Account;
 import com.sujal.DigitalJavaAssessment.model.Customer;
 import com.sujal.DigitalJavaAssessment.service.AccountService;
-import com.sujal.DigitalJavaAssessment.util.ApiConstant;
+import com.sujal.DigitalJavaAssessment.util.StringConstant;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -77,12 +77,12 @@ public class AccountControllerTest {
         customerPOJO = new CustomerPOJO();
         customerPOJO.setCustomerList(Arrays.asList(customer));
         customerPOJO.setStatusCode(200);
-        customerPOJO.setMessage(ApiConstant.SUCCESS);
+        customerPOJO.setMessage(StringConstant.SUCCESS);
 
         accountPOJO = new AccountPOJO();
         accountPOJO.setAccount(account);
         accountPOJO.setStatusCode(200);
-        accountPOJO.setMessage(ApiConstant.SUCCESS);
+        accountPOJO.setMessage(StringConstant.SUCCESS);
     }
 
     @Test
